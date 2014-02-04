@@ -1,14 +1,24 @@
 
 path = require \path
-$ = require \jQuery
 
 get-base-filename = (contents-location) ->
   path.join contents-location, "contents.json"
 
 module.exports = {
-  loadContents: (contents-location) ->
+  load-contents: (contents-location, json-loader, loaded) ->
     base-filename = get-base-filename contents-location
-    $.getJSON base-filename, (data) ->
-      console.log data
-    [contents-location, base-filename]
+    json-loader "#base-filename", (data) ->
+      content-object = {
+        loader: json-loader,
+        main-file: {
+          name: base-filename,
+          content: data
+        },
+        initial-file: (...) ->
+          data.Initial
+        load-content: (name, func) !->
+          file-name = path.join contents-location, name
+          json-loader file-name, func
+      }
+      loaded content-object
 }
