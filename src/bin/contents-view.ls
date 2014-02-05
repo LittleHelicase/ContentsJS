@@ -1,6 +1,7 @@
 
 contentsjs = require \../contents
 view = require \../view/node/terminal-view
+global <<< require \prelude-ls
 
 # assume third argument is the directory to load
 dir-to-load = process.argv[2]
