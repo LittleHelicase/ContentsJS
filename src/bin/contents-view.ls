@@ -16,8 +16,10 @@ json-loader = (file, fun) ->
   fun json-file
 
 
+screen = view.initialize!
+
 contentsjs.load-contents dir-to-load, json-loader, (data) ->
   console.log data
   console.log data.initial-file!
   data.load-content data.initial-file!, (initial-content) ->
-    console.log initial-content
+    view.show-content screen, initial-content, (...) -> console.log \finished
