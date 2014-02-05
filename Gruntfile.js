@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     clean: {
 //      test: ['build'],
       src:  ['build'],
-      test: ['test/*.js']
+      test: ['test/**/*.js']
     },
 
     // Configuration to be run (and then tested).
@@ -80,8 +80,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['livescript:src']);
 
   // after testing clean the test directory
-  grunt.registerTask('test', ['livescript:src','livescript:test', 'mochaTest', 'clean:test']);
-  grunt.registerTask('testing', ['livescript:src','livescript:test', 'mochaTest', 'clean:test']);
+  grunt.registerTask('test', ['livescript:test', 'mochaTest', 'clean:test']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['build', 'test']);

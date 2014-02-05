@@ -1,0 +1,10 @@
+{
+	"text" 		: "[Markdown] is a *simple* text-based [markup language]\ncreated by [John Gruber]\n\n[John Gruber]: http://daringfireball.net",
+	"keywords"	: {
+		"markdown" :	"#noref",
+		"markup language" : "#noref",
+		"john gruber" : {
+			"href" : "http://daringfireball.net"
+		}
+	}
+}
