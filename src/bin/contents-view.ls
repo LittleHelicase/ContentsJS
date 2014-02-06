@@ -20,15 +20,23 @@ json-loader = (file, fun) ->
 screen = view.initialize!
 
 data-loaded = (path, data) ->
+  # user-callback wants to load.. so load the keyword!
   load = (keyword) ->
-    load-keyword-text contentsjs.keyword-path path, keyword
+    load-path contentsjs.keyword-path path, keyword
+
+  # pop in the view
   view.show-content screen, data, load
 
-load-keyword-text = (path) ->
+# loads the keyword specified in the path
+load-path = (path) ->
   contentsjs.load-content path, json-loader, data-loaded
 
 entry = contentsjs.initialize dir-to-load
 
 contentsjs.load-content entry, json-loader, (path, data) ->
-  initial-path = contentsjs.keyword-path path, data.Initial
-  load-keyword-text initial-path, data.Initial
+  # The initial file contains the starting keyword!
+  initial-keyword = data.Initial
+  
+  initial-path = contentsjs.keyword-path path, initial-keyword
+
+  load-path initial-path, initial-keyword
