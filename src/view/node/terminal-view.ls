@@ -44,25 +44,50 @@ create-button = (title, key, left-pos, top-pos) ->
     }
   }
 
+initialize-screen = (term-view) ->
+  screen = term-view.screen
+  term-view.content-box = create-content-box "CONTENT"
+  term-view.title-box = create-title-box "TITLE"
+
+  screen.append term-view.content-box
+  screen.append term-view.title-box
+  
+  term-view.quit-button = create-button "Quit", "q / ESC", "75%", "90%"
+  screen.append term-view.quit-button
+
+  screen.key ['escape', 'q', 'C-c'], (ch, key) ->
+    process.exit 0
+
+  term-view
+
 # dummy for currying (I couldn't find out how to curry the last parameter)
-button-callback = (screen, box, content, keyword,dummy) -->
+button-callback = (screen, box, keyword,dummy) -->
   if box.content != keyword then
     box.setContent keyword
-  else
-    box.setContent content.Content
   screen.render!
 
 module.exports = {
   # TODO: wrap screen!
   initialize: (...) ->
-    blessed.screen!
-  show-content: (screen, content, user-callback) ->
-    box = create-content-box content.Content
-    title-box = create-title-box content.Title
-
-    screen.append box
-    screen.append title-box
-
+    tv = {
+      screen: blessed.screen!
+      buttons: []
+      key-events: []
+      current-path: "\#noref"
+    }
+    initialize-screen tv
+  clear: (term-view) ->
+    screen = term-view.screen
+    term-view.buttons |> map (btn) ->
+      screen.remove btn
+    term-view.key-events |> map ({key, callback}) ->
+      screen.unkey key, callback
+  show-content: (term-view, content, user-callback) ->
+    @clear term-view
+    screen = term-view.screen
+    term-view.content-box.setContent content.Content
+    term-view.title-box.setContent content.Title
+    
     # add buttons to the side of the view
     v-pos = 1
     tree = tp.parse-markdown content.Content
@@ -70,20 +95,14 @@ module.exports = {
       btn = create-button keyword, (keyword.charAt 0), 1, v-pos
       v-pos := v-pos + 4
       screen.append btn
+      term-view.buttons.push btn
 
       # add callback for button
-      keyword-button-callback = button-callback screen, box, content, keyword
-      screen.key (keyword.charAt 0), keyword-button-callback
+      keyword-button-callback = button-callback screen, term-view.content-box, keyword
+      key = keyword.charAt 0
+      screen.key key, keyword-button-callback
+      term-view.key-events.push { key: key, callback: keyword-button-callback }
     
-    quit = create-button "Quit", "q / ESC", "75%", "90%"
-    screen.append quit
-
-#    console.dir box.content
-#    process.exit 0
-
-    screen.key ['escape', 'q', 'C-c'], (ch, key) ->
-      process.exit 0
-
     screen.render!
 
 }
