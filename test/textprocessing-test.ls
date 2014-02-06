@@ -1,6 +1,6 @@
 
 global <<< require \prelude-ls
-chai = require \chai
+require! chai
 chai.should!
 
 tp = require \../src/textprocessing
