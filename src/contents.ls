@@ -12,15 +12,15 @@ path = require \path
 const entry-keyword = "contents"
 
 module.exports = {
-  initialize: (contents-location) ->
+  initialize: (contents-location, keyword=entry-keyword) ->
     # the path determines where the contentsjs-package lies
     # and what is viewed. (One might extend it for histories
     # or multiple concurrent views!?)
     entry-path = {
       path: contents-location
-      entry: entry-keyword
+      entry: keyword
     }
-    @keyword-path entry-path, entry-keyword
+    @keyword-path entry-path, keyword
 
   # gets the path to the keyword file using the package-path
   # the function returns a new path with the current file
