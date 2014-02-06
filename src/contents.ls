@@ -9,27 +9,40 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 path = require \path
 
-get-base-filename = (contents-location) ->
-  path.join contents-location, "contents.json"
+const entry-keyword = "contents"
 
 module.exports = {
-  load-contents: (contents-location, json-loader, loaded) ->
-    base-filename = get-base-filename contents-location
-    json-loader "#base-filename", (data) ->
+  initialize: (contents-location) ->
+    entry-path = {
+      path: contents-location
+      entry: entry-keyword
+    }
+    @keyword-path entry-path, entry-keyword
+
+  # gets the path to the keyword file using the package-path
+  keyword-path: (cjs-path, keyword) ->
+    path: cjs-path.path
+    file: path.join cjs-path.path, keyword
+    entry: cjs-path.entry
+
+  load-contents: (cjs-path, json-loader, loaded) ->
+    module = this
+    filename = cjs-path.file
+    json-loader "#filename", (data) ->
       content-object = {
         loader: json-loader
 
         main-file: {
-          name: base-filename,
+          name: filename,
           content: data
         }
 
         initial-file: (...) ->
           data.Initial
 
-        load-content: (name, func) !->
-          file-name = path.join contents-location, name
-          json-loader file-name, func
+        load-content: (keyword, func) !->
+          new-path = module.keyword-path cjs-path, keyword
+          module.load-contents new-path, json-loader, func
           
       }
       loaded content-object

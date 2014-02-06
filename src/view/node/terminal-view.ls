@@ -61,10 +61,8 @@ initialize-screen = (term-view) ->
   term-view
 
 # dummy for currying (I couldn't find out how to curry the last parameter)
-button-callback = (screen, box, keyword,dummy) -->
-  if box.content != keyword then
-    box.setContent keyword
-  screen.render!
+button-callback = (screen, box, keyword,user-callback,dummy) -->
+  user-callback keyword
 
 module.exports = {
   # TODO: wrap screen!
@@ -98,7 +96,7 @@ module.exports = {
       term-view.buttons.push btn
 
       # add callback for button
-      keyword-button-callback = button-callback screen, term-view.content-box, keyword
+      keyword-button-callback = button-callback screen, term-view.content-box, keyword, user-callback
       key = keyword.charAt 0
       screen.key key, keyword-button-callback
       term-view.key-events.push { key: key, callback: keyword-button-callback }
