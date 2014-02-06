@@ -19,15 +19,16 @@ json-loader = (file, fun) ->
 
 screen = view.initialize!
 
-data-loaded = (data) ->
-  # curry data into the load function
-  load = load-keyword-text data
-  view.show-content screen, data.main-file.content, load
+data-loaded = (path, data) ->
+  load = (keyword) ->
+    load-keyword-text contentsjs.keyword-path path, keyword
+  view.show-content screen, data, load
 
-load-keyword-text = (data, keyword) -->
-  data.load-content keyword, data-loaded
+load-keyword-text = (path) ->
+  contentsjs.load-content path, json-loader, data-loaded
 
 entry = contentsjs.initialize dir-to-load
 
-contentsjs.load-contents entry, json-loader, (data) ->
-  load-keyword-text data, data.initial-file!
+contentsjs.load-content entry, json-loader, (path, data) ->
+  initial-path = contentsjs.keyword-path path, data.Initial
+  load-keyword-text initial-path, data.Initial
