@@ -12,3 +12,7 @@ describe "Textprocessing", (...) !->
     tp.keywords tree, (keyword, ref) -> 
       ref.should.deep.equal text-example.keywords[keyword]
 
+  it "should be able to process empty strings", (...) !->
+    text-example = ""
+    tree = tp.parse-markdown text-example
+    tp.keywords tree, (...) ->

@@ -31,5 +31,6 @@ module.exports = {
     markdown.parse text
 
   keywords: (tree, keyword-callback) ->
-    find-link-refs tree.1.references, keyword-callback, tree
+    if tree?.1?
+      find-link-refs tree.1.references, keyword-callback, tree
 }

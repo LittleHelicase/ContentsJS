@@ -13,8 +13,11 @@ if !dir-to-load? then
 
 # in node json files can be loaded via require
 json-loader = (file, fun) ->
-  json-file = require "../../#file"
-  fun json-file
+  try
+    json-file = require "../../#file"
+    fun json-file
+  catch
+    fun {Content: ""}
 
 
 screen = view.initialize!
