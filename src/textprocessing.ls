@@ -1,6 +1,6 @@
 /*
- * ContentJS
- * https://github.com/LittleHelicase/ContentsJS?source=c
+ * ContentsJS
+ * https://github.com/LittleHelicase/ContentsJS
  *
  * Copyright (c) 2014 "LittleHelicase" Maximilian Klein
  * Licensed under the MIT license.

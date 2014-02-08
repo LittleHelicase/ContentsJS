@@ -1,3 +1,12 @@
+/*
+ * ContentsJS
+ * https://github.com/LittleHelicase/ContentsJS
+ *
+ * Copyright (c) 2014 "LittleHelicase" Maximilian Klein
+ * Licensed under the MIT license.
+ * https://github.com/LittleHelicase/ContentsJS/blob/master/LICENSE
+ */
+
 
 blessed = require \blessed
 tp = require \../../textprocessing
@@ -80,7 +89,7 @@ module.exports = {
       screen.remove btn
     term-view.key-events |> map ({key, callback}) ->
       screen.unkey key, callback
-  show-content: (term-view, content, user-callback) ->
+  show-content: (term-view, content, user-callback) -->
     @clear term-view
     screen = term-view.screen
     term-view.content-box.setContent content.Content

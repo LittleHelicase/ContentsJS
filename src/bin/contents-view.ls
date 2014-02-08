@@ -1,3 +1,12 @@
+/*
+ * ContentsJS
+ * https://github.com/LittleHelicase/ContentsJS
+ *
+ * Copyright (c) 2014 "LittleHelicase" Maximilian Klein
+ * Licensed under the MIT license.
+ * https://github.com/LittleHelicase/ContentsJS/blob/master/LICENSE
+ */
+
 
 contentsjs = require \../contents
 view = require \../view/node/terminal-view
@@ -21,6 +30,19 @@ json-loader = (file, fun) ->
 
 
 screen = view.initialize!
+display = view.show-content screen
+
+cjs = contentsjs.initialize{
+  load: "node-require",
+  output: "terminal",
+  path: dir-to-load,
+  modules: ["terminal"]
+  terminal: {
+    display: display
+  }
+}
+cjs.display!
+contentjs.run dir-to-load, json-loader, display
 
 data-loaded = (path, data) ->
   # user-callback wants to load.. so load the keyword!

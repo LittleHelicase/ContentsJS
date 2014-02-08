@@ -1,5 +1,6 @@
 {
 	"Title"		: "ContentsJS Documentation",
 	"Authors"	: ["Maximilian Klein"],
+    "Patches"   : "patches",
 	"Initial"	: "introduction"
 }

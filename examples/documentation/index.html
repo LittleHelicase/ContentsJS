@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>ContentsJS Documentation</title>
+	<script src="../../build/contents.js"></script>
+	<!-- load JQuery -->
+</head>
+<body>
+	<!-- simply use HTML as the template -->
+	<div id="contentsJS">
+		<div id="header">
+			<h1><span id="logo"></span>TOPIC</h1>
+			<h2>SUBTITLE</h2>
+		</div>
+		<div id="content">
+			Content
+		</div>
+	</div>
+
+	<script>
+		// doesn't work right now!! I'm working on it
+		var cjs = contentsJS.initialize(
+			{
+				load: "jquery",
+				output:"html",
+				path:"./",
+				modules: ["browser","htmlTemplate"]
+				// specific module settings 
+				browser: {
+					// optional as long as jquery is $
+					jquery: $
+				},
+				htmlTemplate: {
+					template: "html",
+					templateID: "contentsJS",
+				}
+			});
+		contentsJS.displayContent(cjs);
+	</script>
+</body>
+</html>

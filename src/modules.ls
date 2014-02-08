@@ -7,4 +7,6 @@
  * https://github.com/LittleHelicase/ContentsJS/blob/master/LICENSE
  */
 
- 
+module.exports = {
+  
+}
