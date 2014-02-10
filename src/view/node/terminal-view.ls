@@ -90,7 +90,7 @@ module.exports = {
     term-view.key-events |> map ({key, callback}) ->
       screen.unkey key, callback
   show-content: (term-view, content, user-callback) -->
-    @clear term-view
+    module.exports.clear term-view
     screen = term-view.screen
     term-view.content-box.setContent content.Content
     term-view.title-box.setContent content.Title

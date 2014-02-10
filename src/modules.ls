@@ -8,5 +8,6 @@
  */
 
 module.exports = {
-  
+  trie-load: (module, cjs) ->
+    
 }

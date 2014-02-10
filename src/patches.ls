@@ -30,8 +30,8 @@ module.exports = {
 
   # loads a file specified by cjs-path with the specified loader
   # for the files and a callback when the file is loaded
-  load-patch: (patch-path, json-loader, loaded, preprocess) ->
-    json-loader patch-path, (data) ->
+  load-patch: (cjs, patch-path, loaded, preprocess) ->
+    cjs.loader patch-path, (data) ->
       preprocess? data
       loaded patch-path, data
 }
