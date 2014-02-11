@@ -17,18 +17,6 @@ const emptyFile = {Content: ""}
 
 module-load = (cjs, exported) -->
   exported.initialize cjs
-
-data-loaded = (path, data) ->
-  # user-callback wants to load.. so load the keyword!
-  request-load = (keyword) ->
-    load-path patches.keyword-path path, keyword
-
-  # pop in the view
-  display data, request-load
-
-# loads the keyword specified in the path
-load-path = (path) ->
-  patches.load-content path, json-loader, data-loaded
   
 load-initial-package = (cjs, loaded) ->
   initial-package = path.join cjs.path, "contents"
