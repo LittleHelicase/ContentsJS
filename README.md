@@ -8,7 +8,16 @@ Non-Linear System for Content presentation
 Running Examples
 ================
 
-The Web-Example isn't working yet. To start the terminal example call
+# Web example
+Simply open the index.html under examples/documentation. Browsers like Chrome complain because ContentsJS dynamically loads file from your file system. You can either enable local file loading (but you shouldn't) or run a local HTTP Server. The simplest way is probably to run
+```
+python -m SimpleHTTPServer
+```
+in the base directory. Currently it is necessary to build the project with grunt build beforehand. Or you can use grunt continuous to watch for file changes and recompile everything automatically when needed.
+
+#Terminal example
+
+
 ```
 lsc examples/terminal/blessed-terminal.ls ../examples/documentation
 ```
