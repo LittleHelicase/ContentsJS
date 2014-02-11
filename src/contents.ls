@@ -52,6 +52,6 @@ module.exports = {
 
   load-keyword: (cjs, keyword, loaded) ->
     keyword-path = path.join cjs.path, "patches", keyword
-    patches.load-patch cjs, keyword-path, loaded
+    patches.load-patch cjs.loader, keyword-path, loaded
 
 }
