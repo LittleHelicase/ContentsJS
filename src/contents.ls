@@ -12,6 +12,7 @@ patches = require \./patches
 loader = require \./loader
 require! path
 
+const version = "0.0.1"
 const emptyFile = {Content: ""}
 
 module-load = (cjs, exported) -->
@@ -35,6 +36,14 @@ load-initial-package = (cjs, loaded) ->
 
 module.exports = {
   initialize: (config) ->
+    # if the versions missmatch convert the data format (if possible)
+    # this might come in handy if one wants to change the format
+    # without lessen compatability (??)
+    # if version is not set, it is assumed that the most recent version
+    # is used (only interesting for development purposes)
+    if version? and version != config.version
+      config := versions.convert(config, config.version, version)
+
     cjs = {}
     cjs <<< config
     cjs.load = if !config.load then "node-require"
@@ -42,6 +51,7 @@ module.exports = {
     | "node-require"  => loader.node-loader!
     | "jquery"        => loader.jquery config.browser.jquery
     | otherwise       => loader.node-loader!
+
 
     m-load = module-load cjs
     config.modules |> map (module) ->

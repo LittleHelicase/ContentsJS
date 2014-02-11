@@ -24,6 +24,7 @@ screen = view.initialize!
 display = view.show-content screen
 
 cjs = contentsjs.initialize {
+  version: "0.0.1"
   load: "node-require",
   output: "terminal",
   path: dir-to-load,
