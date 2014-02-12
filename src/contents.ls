@@ -10,13 +10,15 @@
 
 patches = require \./patches
 loader = require \./loader
+versions = require \./versions
 require! path
 
 const version = "0.0.1"
 const emptyFile = {Content: ""}
 
-module-load = (cjs, exported) -->
-  exported.initialize cjs
+module-load = (cjs, module-name, exported) -->
+  console.log loaded module-name
+  cjs[module-name] <<< exported.initialize cjs
   
 load-initial-package = (cjs, loaded) ->
   initial-package = path.join cjs.path, "contents"
@@ -34,16 +36,18 @@ module.exports = {
 
     cjs = {}
     cjs <<< config
-    cjs.load = if !config.load then "node-require"
+    cjs.load = if !config.load then "node-require" else config.load
     cjs.loader = switch cjs.load
     | "node-require"  => loader.node-loader!
-    | "jquery"        => loader.jquery config.browser.jquery
+    | "jquery"        => loader.jquery-loader config.browser.jquery
     | otherwise       => loader.node-loader!
 
 
     m-load = module-load cjs
+    module-path = if cjs.module-path? then cjs.module-path else "./modules"
     config.modules |> map (module) ->
-      cjs[module] <<< cjs.loader "./modules/#module", m-load, no # json file
+      this-m-load = m-load module
+      cjs.loader "#module-path/#module", this-m-load, no # json file
     
     load-initial-package cjs, (content) ->
       cjs.package = content

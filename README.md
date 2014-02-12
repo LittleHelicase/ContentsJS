@@ -13,7 +13,14 @@ Simply open the index.html under examples/documentation. Browsers like Chrome co
 ```
 python -m SimpleHTTPServer
 ```
+or (after installing the http-server npm package globally)
+```
+http-server
+```
 in the base directory. Currently it is necessary to build the project with grunt build beforehand. Or you can use grunt continuous to watch for file changes and recompile everything automatically when needed.
+
+BUT AS THIS IS REALLY ANNOYING I WILL SWITCH TO REQUIREJS... :(
+
 
 #Terminal example
 

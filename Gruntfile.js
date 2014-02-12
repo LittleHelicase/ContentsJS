@@ -40,7 +40,7 @@ module.exports = function(grunt) {
     watch : {
       ls: {
         files: ['src/**/*.ls'],
-        tasks: ['build'],
+        tasks: ['clean','build','browserify'],
       },
       livereload: {
         options: {livereload: true},
@@ -84,6 +84,6 @@ module.exports = function(grunt) {
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['build', 'test']);
-  grunt.registerTask('web', ['build', 'browserify']);
+  grunt.registerTask('web', ['clean', 'build', 'browserify']);
   grunt.registerTask('continuous', ['watch']);
 };

@@ -8,7 +8,8 @@
  */
 
 module.exports = {
-  convert: (config, is-version, should-version) ->
-    # currently there is no conversion necessray ;)
-    config
+  initialize: (cjs) -> {
+    display: (...) ->
+      console.log "if it would work the browser should display something ;)"
+  }
 }

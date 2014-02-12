@@ -21,7 +21,7 @@ load-keyword = (cjs, keyword) -->
   loaded = data-loaded cjs
   contents.load-keyword cjs, keyword, loaded
 
-module.exports = {
+module.exports := {
   initialize: (cjs) ->
     {
       display: (...) ->

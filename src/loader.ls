@@ -23,14 +23,23 @@ module.exports = {
   # in jquery json files are loaded differently than
   # normal sources (like modules)
   jquery-loader: ($) ->
-    (file, callback, is-json=true) ->
+    (file, callback, is-json=true) !->
       try
         if is-json
-          $.getJSON file, callback
+          $.getJSON "#file.json", callback
         else
-          $.getScript file, callback
+          window.module := {};
+          ($.getScript "#file.js")
+            .done (...) ->
+              console.log "data loaded"
+              callback eval "module.exports;"
+            .fail (...) ->
+              console.log &2
       catch error
         console.log "unable to load #file (#error)"
-        callback emptyFile
+        if is-json
+          callback emptyFile
+        else
+          console.log "cannot continue without scriptfile"
 
 }
