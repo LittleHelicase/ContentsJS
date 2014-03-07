@@ -7,7 +7,7 @@
  * https://github.com/LittleHelicase/ContentsJS/blob/master/LICENSE
  */
 
-module.exports = {
-  trie-load: (module, cjs) ->
-    
-}
+define (...) ->
+  module.exports = {
+    trie-load: (module, cjs) ->
+  }

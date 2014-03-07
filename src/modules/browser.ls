@@ -7,9 +7,11 @@
  * https://github.com/LittleHelicase/ContentsJS/blob/master/LICENSE
  */
 
-module.exports = {
-  initialize: (cjs) -> {
-    display: (...) ->
-      console.log "if it would work the browser should display something ;)"
+
+define (...) ->
+  {
+    initialize: (cjs) -> {
+      display: (...) ->
+        console.log "if it would work the browser should display something ;)"
+    }
   }
-}

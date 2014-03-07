@@ -3,7 +3,7 @@ global <<< require \prelude-ls
 require! chai
 chai.should!
 
-patches = require \../src/patches
+patches = requirejs \ls!src/patches
 preloaded-example = require \./fixtures/load-example
 
 const path = "TEST"

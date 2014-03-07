@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     clean: {
 //      test: ['build'],
       src:  ['build'],
-      test: ['test/**/*.js']
+      test: ['test/**/*-test.js']
     },
 
     // Configuration to be run (and then tested).
@@ -58,9 +58,10 @@ module.exports = function(grunt) {
       }
     },
 
-    mochaTest: {
+    mochacli: {
         options: {
-            reporter: 'mocha-unfunk-reporter'
+          require: ["test/require"],
+          reporter: 'mocha-unfunk-reporter'
         },
         any: {
             src: ['test/**/*-test.js']
@@ -75,13 +76,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-livescript');
-  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-mocha-cli');
 
   grunt.registerTask('build', ['livescript:src']);
 
   // after testing clean the test directory
-  grunt.registerTask('test', ['livescript:test', 'mochaTest', 'clean:test']);
+  grunt.registerTask('test', ['livescript:test', 'mochacli', 'clean:test']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['build', 'test']);

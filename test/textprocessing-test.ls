@@ -3,7 +3,7 @@ global <<< require \prelude-ls
 require! chai
 chai.should!
 
-tp = require \../src/textprocessing
+tp = requirejs \ls!src/textprocessing
   
 describe "Textprocessing", (...) !->
   it "should process keywords in markdown files", (...)  !->

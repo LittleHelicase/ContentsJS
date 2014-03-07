@@ -8,8 +8,10 @@
  */
 
 
-contentsjs = require \../../src/contents
-view = require \../../src/view/node/terminal-view
+requirejs = require \../../src/require
+
+contentsjs = requirejs \ls!src/contents
+view = requirejs \ls!src/view/node/terminal-view
 global <<< require \prelude-ls
 
 # assume third argument is the directory to load
@@ -19,15 +21,14 @@ if !dir-to-load? then
   console.log "missing argument, path to contents required"
   process.exit 1
 
-
 screen = view.initialize!
 display = view.show-content screen
 
 cjs = contentsjs.initialize {
   version: "0.0.1"
-  load: "node-require",
-  output: "terminal",
-  path: dir-to-load,
+  load: "node-require"
+  output: "terminal"
+  path: dir-to-load
   modules: ["terminal"]
   terminal: {
     show-content: display

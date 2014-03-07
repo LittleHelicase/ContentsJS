@@ -7,26 +7,26 @@
  * https://github.com/LittleHelicase/ContentsJS/blob/master/LICENSE
  */
 
-contents = require \../contents
+define ["ls!src/contents"], (contents) ->
 
-data-loaded = (cjs, path, data) -->
-  # user-callback wants to load.. so load the keyword!
-  load = load-keyword cjs
+  data-loaded = (cjs, path, data) -->
+    # user-callback wants to load.. so load the keyword!
+    load = load-keyword cjs
 
-  # pop in the view
-  cjs.terminal.show-content data, load
+    # pop in the view
+    cjs.terminal.show-content data, load
 
-# loads the keyword specified in the path
-load-keyword = (cjs, keyword) -->
-  loaded = data-loaded cjs
-  contents.load-keyword cjs, keyword, loaded
+  # loads the keyword specified in the path
+  load-keyword = (cjs, keyword) -->
+    loaded = data-loaded cjs
+    contents.load-keyword cjs, keyword, loaded
 
-module.exports := {
-  initialize: (cjs) ->
-    {
-      display: (...) ->
-        if !cjs.terminal.show-content?
-          throw "Displaying in Terminal requires a 'terminal.show-content' to be set."
-        load-keyword cjs, cjs.package.Initial
-    }
-}
+  {
+    initialize: (cjs) ->
+      {
+        display: (...) ->
+          if !cjs.terminal.show-content?
+            throw "Displaying in Terminal requires a 'terminal.show-content' to be set."
+          load-keyword cjs, cjs.package.Initial
+      }
+  }
