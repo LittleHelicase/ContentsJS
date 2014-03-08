@@ -17,6 +17,7 @@
 	    'modules': "http://localhost:8080/build/modules",
 	    'patches': "http://localhost:8080/examples/documentation",
 	    'livescript': "http://localhost:8080/lib/livescript",
+	    'markdown': "http://localhost:8080/lib/markdown",
 	    'ls': "http://localhost:8080/lib/ls",
 	    'prelude': "http://localhost:8080/lib/prelude-browser",
 	  }
@@ -27,8 +28,8 @@
 	<!-- simply use HTML as the template -->
 	<div id="contents">
 		<div id="header">
-			<h1><span id="logo"></span>TOPIC</h1>
-			<h2>SUBTITLE</h2>
+			<h1><span id="logo"></span><span id="title">TOPIC</span></h1>
+			<h2 id="subtitle">SUBTITLE</h2>
 		</div>
 		<div id="content">
 			Content
@@ -46,15 +47,14 @@
 					modules: ["browser","htmlTemplate"],
 					// specific module settings 
 					browser: {
-						// optional? as long as jquery is $
-						jquery: $
+						templateEngine: "htmlTemplate"
 					},
 					htmlTemplate: {
 						template: "html",
 						templateID: "contents",
 					}
 				});
-			setTimeout(function(){cjs.browser.display(cjs);}, 5000);
+			setTimeout(function(){cjs.browser.displayPackage(cjs.package);}, 500);
 		});
 	</script>
 </body>

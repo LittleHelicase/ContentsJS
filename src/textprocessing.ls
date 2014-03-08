@@ -33,4 +33,10 @@ define ["markdown"], (markdown) ->
     keywords: (tree, keyword-callback) ->
       if tree?.1?
         find-link-refs tree.1.references, keyword-callback, tree
+
+    markdown-to-html: (text) ->
+      console.log markdown
+      tree = markdown.parse text
+      html-tree = markdown.toHTMLTree tree
+      markdown.renderJsonML html-tree
   }

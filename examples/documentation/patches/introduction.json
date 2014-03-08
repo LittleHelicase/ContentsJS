@@ -1,5 +1,5 @@
 {
 	"Title"		: "Introduction",
-	"Content"	: "ContentsJS is a non linear approach of presenting arbitrary information. Other than normal texts the idea is to give the user more possibility to gather information in documents / written stuff. This is done by presenting small [Patches] which contain [Keywords]. Read more about the [Motivation] of ContentsJS or read on [how to use it]\n\n[Patches]: #patches\n[Keywords]: #keywords\n[Motivation]: #Motivation\n[how to use it]: #Usage",
+	"Content"	: "ContentsJS is a non linear approach of presenting arbitrary information. Other than normal texts the idea is to give the user more possibility to gather information in documents / written stuff. This is done by presenting small [Patches] which contain [Keywords]. Read more about the [Motivation] of ContentsJS or read on [how to use it]\n\n[Patches]: #patches\n[Keywords]: #keywords\n[Motivation]: #motivation\n[how to use it]: #usage",
 	"Author"	: "Maximilian Klein"
 }
