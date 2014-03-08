@@ -7,9 +7,9 @@
  * https://github.com/LittleHelicase/ContentsJS/blob/master/LICENSE
  */
 
-define ["ls!src/patches", "ls!src/loader", "ls!src/versions"], (patches, loader, versions) ->
-  
+if !ls? then ls = ""
 
+define [ls+"src/patches", ls+"src/loader", ls+"src/versions"], (patches, loader, versions) ->
   const version = "0.0.1"
   const emptyFile = {Content: ""}
 
@@ -17,7 +17,7 @@ define ["ls!src/patches", "ls!src/loader", "ls!src/versions"], (patches, loader,
     cjs[module-name] <<< exported.initialize cjs
     
   load-initial-package = (cjs, loaded) ->
-    initial-package = "#cjs.path/contents"
+    initial-package = cjs.path+"/contents"
     cjs.loader initial-package, loaded
 
   {
@@ -39,7 +39,7 @@ define ["ls!src/patches", "ls!src/loader", "ls!src/versions"], (patches, loader,
       module-path = if cjs.module-path? then cjs.module-path else "./modules"
       config.modules |> map (module) ->
         this-m-load = m-load module
-        cjs.loader "ls!modules/#module", this-m-load, no # json file
+        cjs.loader ls+"modules/#module", this-m-load, no # json file
       
       load-initial-package cjs, (content) ->
         cjs.package = content
@@ -47,7 +47,7 @@ define ["ls!src/patches", "ls!src/loader", "ls!src/versions"], (patches, loader,
       return cjs
 
     load-keyword: (cjs, keyword, loaded) ->
-      keyword-path = "#cjs.path/patches/#keyword"
+      keyword-path = cjs.path + "/patches/#keyword"
       patches.load-patch cjs.loader, keyword-path, loaded
 
   }

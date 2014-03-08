@@ -50,14 +50,6 @@ module.exports = function(grunt) {
 
     },
 
-    browserify: {
-      dist: {
-        files: {
-          'build/contents.pack.js': ['build/**/*.js']
-        }
-      }
-    },
-
     mochacli: {
         options: {
           require: ["test/require"],
@@ -86,6 +78,6 @@ module.exports = function(grunt) {
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['build', 'test']);
-  grunt.registerTask('web', ['clean', 'build', 'browserify']);
+  grunt.registerTask('web', ['clean', 'build']);
   grunt.registerTask('continuous', ['watch']);
 };

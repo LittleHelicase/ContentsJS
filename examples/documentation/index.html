@@ -3,11 +3,25 @@
 <head>
 	<meta charset="utf-8" />
 	<title>ContentsJS Documentation</title>
-	<!--<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>-->
 	<!-- Thx @ Google -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	<script src="../../build/contents.pack.js"></script>
-	<!-- load JQuery -->
+	<!--<script src="../../build/contents.pack.js"></script> -->
+	<script src="http://localhost:8080/lib/prelude-browser.js"></script>
+	<script src="http://localhost:8080/lib/require.js"> </script>
+	<script>
+	requirejs.config({
+	  paths: {
+	  	'text': "http://localhost:8080/lib/text",
+	  	'json': "http://localhost:8080/lib/json",
+	    'src': "http://localhost:8080/build",
+	    'modules': "http://localhost:8080/build/modules",
+	    'patches': "http://localhost:8080/examples/documentation",
+	    'livescript': "http://localhost:8080/lib/livescript",
+	    'ls': "http://localhost:8080/lib/ls",
+	    'prelude': "http://localhost:8080/lib/prelude-browser",
+	  }
+	});
+	</script>
 </head>
 <body>
 	<!-- simply use HTML as the template -->
@@ -22,13 +36,13 @@
 	</div>
 
 	<script>
-		$(function()  {
+		requirejs(["src/contents", "modules/browser", "modules/htmlTemplate"], function(contentsJS){
 			var cjs = contentsJS.initialize(
 				{
 					load: "jquery",
 					output:"html",
-					path:"./",
-					modulePath: "http://localhost:8080/build/modules",
+					path:"patches/",
+					//modulePath: "http://localhost:8080/build/modules",
 					modules: ["browser","htmlTemplate"],
 					// specific module settings 
 					browser: {

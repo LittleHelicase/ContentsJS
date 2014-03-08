@@ -26,8 +26,7 @@ define (...) ->
       (file, callback, is-json=true) ->
         try
           if is-json
-            loaded-file = requirejs "json!#file.json"
-            callback loaded-file
+            require ["json!#file.json"], callback
           else
             loaded-file = requirejs "#file"
             callback loaded-file

@@ -7,7 +7,9 @@
  * https://github.com/LittleHelicase/ContentsJS/blob/master/LICENSE
  */
 
-define ["ls!src/contents"], (contents) ->
+if !ls? then ls = ""
+
+define [ls+"src/contents"], (contents) ->
 
   data-loaded = (cjs, path, data) -->
     # user-callback wants to load.. so load the keyword!
