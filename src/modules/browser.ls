@@ -25,20 +25,16 @@ define [ls+"src/contents"], (contents) ->
     contents.load-keyword cjs, keyword, loaded
 
   hash-load-keyword = (cjs, dummy) -->
-    console.log dummy
     keyword = location.hash.substring 1
     load-keyword cjs, keyword
 
   {
     initialize: (cjs) -> {
       display-package: (data) ->
-        console.log "if it would work the browser should display something ;)"
         tmp-engine = cjs[cjs.browser.templateEngine]
         tmp-engine.set-title data.Title
 
         hash-load = hash-load-keyword cjs
-
-        console.log ($ window).bind
         ($ window).bind "hashchange", hash-load
 
         location.hash = "\#"+data.Initial

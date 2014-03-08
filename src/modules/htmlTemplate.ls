@@ -25,6 +25,5 @@ define [ls+"src/textprocessing"] (tp) ->
       show-content: (json) ->
         set-subtitle json.Title
         set-content json.Content
-        console.log "if it would work the browser should use the html template ;)"
     }
   }
