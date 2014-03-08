@@ -7,8 +7,6 @@
  * https://github.com/LittleHelicase/ContentsJS/blob/master/LICENSE
  */
 
-require! path
-
 define ["ls!src/patches", "ls!src/loader", "ls!src/versions"], (patches, loader, versions) ->
   
 
@@ -19,7 +17,7 @@ define ["ls!src/patches", "ls!src/loader", "ls!src/versions"], (patches, loader,
     cjs[module-name] <<< exported.initialize cjs
     
   load-initial-package = (cjs, loaded) ->
-    initial-package = path.join cjs.path, "contents"
+    initial-package = "#cjs.path/contents"
     cjs.loader initial-package, loaded
 
   {
@@ -49,7 +47,7 @@ define ["ls!src/patches", "ls!src/loader", "ls!src/versions"], (patches, loader,
       return cjs
 
     load-keyword: (cjs, keyword, loaded) ->
-      keyword-path = path.join cjs.path, "patches", keyword
+      keyword-path = "#cjs.path/patches/#keyword"
       patches.load-patch cjs.loader, keyword-path, loaded
 
   }
