@@ -1,0 +1,14 @@
+body {
+  font-family: 'Gafata', sans-serif;
+  font-size: 20px;
+}
+
+#contents {
+  width:25em;
+  margin: auto;
+}
+
+#extra-info-right {
+	float:right;
+	
+}
